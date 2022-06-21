@@ -1,4 +1,41 @@
-{
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>My Liff</title>
+  </head>
+  <body>
+    <form autocomplete="off">
+      <input type="text" name="text" />
+      <input type="submit" value="hello" />
+    </form>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script>
+
+      function handleSubmit(event) {
+        event.preventDefault();
+        const gudf = new FormData(event.target);
+        const text = gudf.get("text");
+        if (text == "1234") {
+          sendMessage();
+        }
+      }
+      
+      const form = document.querySelector("form");
+      form.addEventListener("submit", handleSubmit);
+
+      function sendMessage() {
+        // Initialize LIFF
+        liff
+          .init({ liffId: "1657223717-3zoPD0dK" })
+          .then(() => {
+            if (liff.isLoggedIn()) {
+              liff.sendMessages([
+                {
+                  "type": "flex",
+                  "altText": "Flex Message",
+                  "contents": {
                     "type": "bubble",
                     "hero": {
                       "type": "image",
@@ -164,3 +201,5 @@
           });
       }
     </script>
+  </body>
+</html>
