@@ -1,241 +1,91 @@
+<html class="ui-mobile"><head><base href="http://genshareflex.herokuapp.com/registered">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LIFF Share Flex</title>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-      crossorigin="anonymous"
-    />
-    <style></style>
-  </head>
 
-  <body class="bg-dark">
-    <div id="divGuess" class="container-fluid mt-5">
-      <div class="row justify-content-center">
-        <div class="col text-center ">
-          <h3 class="text-primary fw-bolder">ส่งข้อความด้วย LIFF</h3>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-md-6 text-center">
-          <!-- <input
-            type="text"
-            id="flex"
-            value=""
-            placeholder="ใส่ข้อความ หรือ Flex message"
-            class="form-control"
-          /> -->
-          <textarea class="form-control" id="flex" name = "flex" rows="7"></textarea>
-        </div>
-      </div>
-      <div class="row justify-content-center mt-3">
-        <div class="col-md-6 text-center">
-          <input
-            type="button"
-            id="button"
-            value="ส่งเลย"
-            onclick="process()"
-            class="btn btn-warning"
-          />
-        </div>
-      </div>
-    </div>
 
-    <script
-      charset="utf-8"
-      src="https://static.line-scdn.net/liff/edge/2/sdk.js"
-    ></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script> -->
+  <!--  -->
+  <style>
+    .choice{
+      padding-top: 7px;
+      padding-left: 2px;
+      padding-bottom: 7px;
+    }
+    .marginbutton{
+      padding-left: 2px;
+    }
+    .labeltext{
+      font-size:50px;
+    }
+    .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+    .container {
+      padding: 20px;
+    }
+    #fname {
+      maxlength:"4"; 
+      size:"4"; 
+    }
 
-    <script>
-      function process() {
-        let input = document.getElementById("flex").value;
-        let output;
-        let isFlex = false;
-        try {
-          let flex = JSON.parse(input);
-          output = flex;
-          isFlex = true;
-        } catch (e) {
-          output = input;
-          isFlex = false;
-        }
-        sendTemplatFlex(output, isFlex);
-      }
-    </script>
-    <script>
-      (async () => {
-        let liffId = "1656079273-1Z8LWAWR";
-        await liff.init({ liffId: liffId });
 
-        liff.ready.then(() => {
-          if (!liff.isLoggedIn()) {
-            liff.login();
-          }
-        });
-      })();
+  </style>
 
-      function setCredit(message) {
-        if (message.footer?.contents?.length > 0) {
-          let length = message.footer?.contents.length;
-          if (message.footer?.contents[length - 1]?.type == "spacer") {
-            message.footer.contents.push("xx");
-            length++
-            message.footer.contents[length - 1] =
-              message.footer.contents[length - 2];
-            message.footer.contents[length - 2] = {
-              type: "text",
-              text: "Developed by Teerapong",
-              weight: "bold",
-              align: "center",
-              decoration: "underline",
-              color: "#ff0000"
-            };
-          } else {
-            message.footer?.contents.push({
-              type: "text",
-              text: "Developed by Teerapong",
-              weight: "bold",
-              align: "center",
-              decoration: "underline",
-              color: "#ff0000",
-              adjustMode: "shrink-to-fit"
-            });
-          }
-        } else {
-          message.footer = {
-            type: "box",
-            layout: "vertical",
-            spacing: "sm",
-            contents: [
-              {
-                type: "text",
-                text: "Developed by teerapong",
-                weight: "bold",
-                align: "center",
-                decoration: "underline",
-                color: "#ff0000",
-                adjustMode: "shrink-to-fit"
-              }
-            ],
-            flex: 0
-          };
-        }
-        return message;
-      }
+<title></title></head><body class="ui-mobile-viewport ui-overlay-a"><div data-role="page" data-url="/registered" tabindex="0" class="ui-page ui-page-theme-a ui-page-active" style="min-height: 941px;">
+<!-- <div id="qrcode"></div> -->
+<!-- 
+<script> 
+    function myhost() {
+        var h = location.hostname;
+        var fpath = 'https://liff.line.me/1656671426-5nANpbao/flex?flexid=111_1659592328'
+        //var fullpath = 'https://'+h+fpath 
+        //document.getElementById("hostname").setAttribute("href", fpath);
+        document.getElementById("hostname").innerHTML = fpath;
+        // const qrcode = new QRCode(document.getElementById('qrcode'), {
+        //   text: fpath,
+        //   width: 128,
+        //   height: 128,
+        //   colorDark : '#000',
+        //   colorLight : '#fff',
+        //   correctLevel : QRCode.CorrectLevel.H
+        // });
+    }
+    myhost()
+</script>
+ -->
 
-      async function sendTemplatFlex(output, isFlex) {
-        method = "share";
-        let message;
-        if (isFlex) {
-          if (output.type != "flex") {
-            message = {
-              type: "flex",
-              altText: "flex",
-              contents: output
-            };
-            if (message.contents.type == "carousel") {
-              message.contents.contents.map(bubble => setCredit(bubble));
-            } else {
-              message.contents = setCredit(message.contents);
-            }
-          } else {
-            message = `${output}\n\nDeveloped by Teerapong`;
-          }
-        } else {
-          message = {
-            type: "text",
-            text: `${output}\n\nDeveloped by Teerapong`
-          };
-        }
-        console.log(message);
-        liff.ready.then(() => {
-          if (!liff.isInClient()) {
-            if (!liff.isLoggedIn()) {
-              liff.login();
-            } else {
-              if (liff.isApiAvailable("shareTargetPicker")) {
-                liff.shareTargetPicker([message]).then(result => {
-                  if (result) {
-                    // ผู้ใช้งานได้กดแชร์ข้อความ แต่จะสำเร็จหรือไม่ให้ดูที่ ${result.status}
-                    alert(`${result.status} ส่งข้อความแล้ว!`);
-                    liff.closeWindow();
-                  } else {
-                    // ผู้ใช้งานกดปิดหน้า ShareTargetPicker หรือใช้แอป LINE เวอร์ชันต่ำกว่า 10.10.1
 
-                    // ใช้ liff.getLineVersion() เพื่อดึงเลขเวอร์ชันจากแอป LINE ของผู้ใช้
-                    const [majorVer, minorVer, patchVer] = (
-                      liff.getLineVersion() || ""
-                    ).split(".");
 
-                    // alert ในกรณที่ใช้งาน LIFF ใน external browser ค่า minorVer จะเป็น undefined
-                    if (minorVer === undefined) {
-                      alert("ยกเลิกการส่งข้อความในบราวเซอร์");
-                      return;
-                    }
 
-                    // alert ในกรณีที่ผู้ใช้งานใช้แอป LINE v10.10.1 หรือเวอร์ชันใหม่กว่า
-                    if (
-                      parseInt(majorVer) >= 10 &&
-                      parseInt(minorVer) >= 10 &&
-                      parseInt(patchVer) > 0
-                    ) {
-                      alert("ยกเลิกการส่งข้อความในไลน์");
-                    }
-                  }
-                });
-              }
-            }
-          } else {
-            if (liff.isApiAvailable("shareTargetPicker")) {
-              liff.shareTargetPicker([message]).then(result => {
-                if (result) {
-                  // ผู้ใช้งานได้กดแชร์ข้อความ แต่จะสำเร็จหรือไม่ให้ดูที่ ${result.status}
-                  alert(`${result.status} ส่งข้อความแล้ว!`);
-                  liff.closeWindow();
-                } else {
-                  // ผู้ใช้งานกดปิดหน้า ShareTargetPicker หรือใช้แอป LINE เวอร์ชันต่ำกว่า 10.10.1
+<!-- <form> -->
+<div class="container">
+    <label for="formname"><b>Flex ได้ถูกสร้างแล้ว ท่านสามารถแชร์ลิงค์นี้ โดยกดลิงค์เพื่อแชร์ หรือทำไปใส่ใน url action</b></label>
+    <a id="hostname" href="https://liff.line.me/1656671426-5nANpbao/flex?flexid=111_1659592328" target="_blank" class="ui-link">https://liff.line.me/1656671426-5nANpbao/flex?flexid=111_1659592328</a>
 
-                  // ใช้ liff.getLineVersion() เพื่อดึงเลขเวอร์ชันจากแอป LINE ของผู้ใช้
-                  const [majorVer, minorVer, patchVer] = (
-                    liff.getLineVersion() || ""
-                  ).split(".");
+    <!-- <label for="formname"><b>ท่านสามารถแชร์&ZeroWidthSpace; QR code นี้ได้เช่นกัน</b></label> -->
+    
+</div>
+<!-- </form> -->
 
-                  // alert ในกรณที่ใช้งาน LIFF ใน external browser ค่า minorVer จะเป็น undefined
-                  if (minorVer === undefined) {
-                    alert("ยกเลิกการส่งข้อความในบราวเซอร์");
-                    return;
-                  }
 
-                  // alert ในกรณีที่ผู้ใช้งานใช้แอป LINE v10.10.1 หรือเวอร์ชันใหม่กว่า
-                  if (
-                    parseInt(majorVer) >= 10 &&
-                    parseInt(minorVer) >= 10 &&
-                    parseInt(patchVer) > 0
-                  ) {
-                    alert("ยกเลิกการส่งข้อความในไลน์");
-                  }
-                }
-              });
-            }
-          }
-        });
-      }
-    </script>
-  </body>
-  <script></script>
-</html>
+
+
+
+</div><div class="ui-loader ui-corner-all ui-body-a ui-loader-default"><span class="ui-icon-loading"></span><h1>loading</h1></div></body></html>
