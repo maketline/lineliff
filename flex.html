@@ -45,47 +45,24 @@
     </style>
   </head>
 <body>
-     <form method="post" autocomplete="off" name="google-sheet">
+     <form class="was-validated"> method="post" autocomplete="off" name="google-sheet">
       <h1>Registration Form</h1><br>
         <p id="uid" name="Uid"></p>
         <img id="upic" name="Upic" width="25%">     
-    <div class="mb-3 mt-3">
+   <div class="mb-3 mt-3">
       <label for="uname" class="form-label">ผู้แนะนำ:</label>
-      <input type="text" class="form-control" name="UName" id="uname" placeholder="Enter username" name="uname" required>
+      <input type="text" class="form-control" id="UName" placeholder="ข้อมูลผู้แนะนำ" name="uname" required>
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">Please fill out this field.</div>
-    </div>
-    <div class="mb-3">
-      <label for="pwd" class="form-label">รหัสผู้แนะนำ:</label>
-      <input type="text" class="form-control" name="Name" id="name" placeholder="Enter password" name="pswd" required>
-      <div class="valid-feedback">Valid.</div>
-      <div class="invalid-feedback">Please fill out this field.</div>
-    </div>
-<!--     <div class="form-check mb-3">
-      <input class="form-check-input" type="checkbox" id="myCheck"  name="remember" required>
-      <label class="form-check-label" for="myCheck">I agree on blabla.</label>
-      <div class="valid-feedback">Valid.</div>
-      <div class="invalid-feedback">Check this checkbox to continue.</div>
-    </div> -->
-  <button type="submit" name="submit" id ="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div>
-<form class="was-validated">
+    </div>	
   <div class="mb-3 mt-3">
-      <label for="uname" class="form-label">Username:</label>
-      <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+      <label for="uname" class="form-label">รหัสผู้แนะน:</label>
+      <input type="text" class="form-control" id="Name" placeholder="ข้อมูลผู้แนะนำ" name="name" required>
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">Please fill out this field.</div>
     </div>	
   <div class="mb-3">
-    <label for="validationTextarea" class="form-label">Textarea</label>
-    <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required></textarea>
-    <div class="invalid-feedback">
-      Please enter a message in the textarea.
-    </div>
-  </div>
-  <div class="mb-3">
-    <button class="btn btn-primary" type="submit" disabled>Submit form</button>
+    <button class="btn btn-primary" id ="submit" type="submit" >ส่งข้อความ</button>
   </div>
 </form>
 <!--   <form method="post" autocomplete="off" name="google-sheet">
