@@ -48,10 +48,10 @@
         <p id="uid" name="Uid"></p>
         <img id="upic" name="Upic" width="25%">
          <table border="5">	
-            <tr><td><b>สวัสดีคุณ : </b></td>
+            <tr><td><b>ผู้แนะนำ : </b></td>
              <td><input type="text" name="UName" id="uname" required="" /></td>
             </tr>
-             <tr><td><b>Name : </b></td>
+             <tr><td><b>รหัสผู้แนะนำ : </b></td>
              <td><input type="text" name="Name" id="name" required="" /></td>
             </tr>
                       <tr><td><b>Email : </b></td>
@@ -115,7 +115,7 @@
             .sendMessages([
               {
                 type: "flex",
-                altText: "This is a Flex Message",
+                altText: "ผูกดวง",
                 contents: {
   "type": "bubble",
   "hero": {
@@ -181,7 +181,7 @@
             "contents": [
               {
                 "type": "text",
-                "text": "รหัสแนะนำ: ",
+                "text": "ผู้แนะนำ:"+ name,
                 "size": "sm",
                 "flex": 1,
                 "position": "relative"
@@ -201,7 +201,7 @@
               },
               {
                 "type": "text",
-                "text": "43581703154",
+                "text": ""+ x.value,
                 "wrap": true,
                 "color": "#666666",
                 "size": "xl",
