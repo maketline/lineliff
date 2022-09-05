@@ -45,6 +45,7 @@
     </style>
   </head>
 <body>
+<div class="container">	
      <form class="was-validated" method="post" autocomplete="off" name="google-sheet">
       <h1>Registration Form</h1><br>
         <p id="uid" name="Uid"></p>
@@ -56,15 +57,16 @@
       <div class="invalid-feedback">Please fill out this field.</div>
     </div>	
   <div class="mb-3 mt-3">
-      <label for="uname" class="form-label">รหัสผู้แนะน:</label>
+      <label for="uname" class="form-label">รหัสผู้แนะนำ:</label>
       <input type="text" class="form-control" name="Name" id="name" placeholder="ข้อมูลผู้แนะนำ"  required>
       <div class="valid-feedback">ผ่าน</div>
-      <div class="invalid-feedback">Please fill out this field.</div>
+      <div class="invalid-feedback">กรุณาป้อนข้อมูล</div>
     </div>	
   <div class="mb-3">
     <button class="btn btn-primary" id ="submit" type="submit" >ส่งข้อความ</button>
   </div>
 </form>
+</div>
 <!--   <form method="post" autocomplete="off" name="google-sheet">
   	<center><br><br>
         
